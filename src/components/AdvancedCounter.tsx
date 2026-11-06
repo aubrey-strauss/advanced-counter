@@ -19,7 +19,10 @@ function AdvancedCounter() {
     setCount(newCount);
     setHistory((prev) => [...prev, newCount]);
   };
-
+  const handleReset = () => {
+    setCount(0);
+    setHistory([]);
+  };
   return (
     <div>
       <h2>Advanced Counter</h2>
@@ -28,7 +31,7 @@ function AdvancedCounter() {
 
       <button onClick={handleIncrement}>Increment</button>
       <button onClick={handleDecrement}>Decrement</button>
-      <button onClick={() => setCount(0)}>Reset</button>
+      <button onClick={handleReset}>Reset</button>
       <label htmlFor="step">Step Value:</label>
       <input
         type="number"
