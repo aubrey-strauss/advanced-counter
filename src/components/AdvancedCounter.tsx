@@ -5,15 +5,21 @@ function AdvancedCounter() {
   // useState hands back a pair, and the brackets unpack it into two named variables
   const [count, setCount] = useState(0);
   const [step, setStep] = useState("1");
+  const [history, setHistory] = useState<number[]>([]);
   /* (prev) => prev + 1 means “take whatever the count was just before this and add 1.” 
       It’s safer than count + 1 because it always uses the newest value. 
       That matters later when the keyboard arrows also change the count. */
   const handleIncrement = () => {
-    setCount((prev) => prev + Number(step));
+    const newCount = count + Number(step); // figure out the new number once
+    setCount(newCount); // save it as the count
+    setHistory((prev) => [...prev, newCount]); // and add it to the history
   };
   const handleDecrement = () => {
-    setCount((prev) => prev - Number(step));
+    const newCount = count - Number(step);
+    setCount(newCount);
+    setHistory((prev) => [...prev, newCount]);
   };
+
   return (
     <div>
       <h2>Advanced Counter</h2>
@@ -33,7 +39,8 @@ function AdvancedCounter() {
       />
       <p>Changes saved.</p>
       <h3>Count History</h3>
-      <p>No history yet.</p>
+      {/* If the history's length is 0, show "No history yet."; otherwise, show the history joined with commas. */}
+      <p>{history.length === 0 ? "No history yet." : history.join(", ")}</p>
     </div>
   );
 }
