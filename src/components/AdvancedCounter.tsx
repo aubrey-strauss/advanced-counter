@@ -32,11 +32,25 @@ function AdvancedCounter() {
       localStorage.setItem("count", count.toString());
       setSaveStatus("Changes saved.");
     }, 1000); // Save after 1 second of inactivity
-
     return () => clearTimeout(timerId); // Cleanup the timer on unmount or before the next effect
   }, [count]); // Only re-run the effect if count changes
 
-  //Add a useEffect hook to load the count from localStorage when the component mounts.
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowUp") {
+        handleIncrement();
+      } else if (event.key === "ArrowDown") {
+        handleDecrement();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleIncrement, handleDecrement]); // Add dependencies to ensure the latest functions are used
+
   return (
     <div>
       <h2>Advanced Counter</h2>
