@@ -16,8 +16,8 @@ Just the tasks. Check things off as you go: change `[ ]` to `[x]`.
 - [x] Clone the GitHub repo (`aubrey-strauss/advanced-counter`)
 - [x] Scaffold a Vite + React + TypeScript project
 - [x] `npm install`
-- [ ] `npm run dev` and see the Vite demo page in the browser
-- [ ] First commit + push
+- [x] `npm run dev` and see the Vite demo page in the browser
+- [x] First commit + push
 
 ## Phase 1: Clean up + folders
 
