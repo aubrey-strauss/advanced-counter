@@ -28,10 +28,11 @@ function AdvancedCounter() {
   useEffect(() => {
     setSaveStatus("Saving changes...");
     const timerId = setTimeout(() => {
-      console.log("Saving count:", count);
+      // Save the count to localStorage after a delay
       localStorage.setItem("count", count.toString());
       setSaveStatus("Changes saved.");
     }, 1000); // Save after 1 second of inactivity
+
     return () => clearTimeout(timerId); // Cleanup the timer on unmount or before the next effect
   }, [count]); // Only re-run the effect if count changes
 
